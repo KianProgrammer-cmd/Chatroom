@@ -1,6 +1,6 @@
-const socket = io(
+const socket = io({
     transports: ["polling", "websocket"]
-);
+});
 
 const messages = document.getElementById("messages");
 const input = document.getElementById("messageInput");
@@ -12,7 +12,10 @@ const room = "main";
 
 socket.on("connect", () => {
     console.log("CONNECTED:", socket.id);
-    status.textContent = "🟢 آنلاین";
+
+    if (status) {
+        status.textContent = "🟢 آنلاین";
+    }
 
     socket.emit("join", {
         username: username,
@@ -22,12 +25,18 @@ socket.on("connect", () => {
 
 socket.on("connect_error", (error) => {
     console.log("SOCKET ERROR:", error.message);
-    status.textContent = "⚠️ خطا در اتصال";
+
+    if (status) {
+        status.textContent = "⚠️ خطا در اتصال";
+    }
 });
 
 socket.on("disconnect", () => {
     console.log("DISCONNECTED");
-    status.textContent = "🔴 قطع شد";
+
+    if (status) {
+        status.textContent = "🔴 قطع شد";
+    }
 });
 
 socket.on("message", (data) => {
@@ -58,7 +67,9 @@ function sendMessage() {
     if (!text) return;
 
     if (!socket.connected) {
-        status.textContent = "🔴 اتصال برقرار نیست";
+        if (status) {
+            status.textContent = "🔴 اتصال برقرار نیست";
+        }
         return;
     }
 
