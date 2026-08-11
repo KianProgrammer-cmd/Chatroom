@@ -4,7 +4,10 @@ from database import init_db, save_message, get_messages
 import os
 
 app = Flask(__name__)
-app.config["SECRET_KEY"] = "chatroom-secret-key"
+app.config["SECRET_KEY"] = os.environ.get(
+    "SECRET_KEY",
+    "chatroom-secret-key"
+)
 
 socketio = SocketIO(
     app,
@@ -63,11 +66,7 @@ def handle_message(data):
 
     print(f"MESSAGE | {username} | {room} | {message}")
 
-    save_message(
-        username,
-        message,
-        room
-    )
+    save_message(username, message, room)
 
     socketio.emit(
         "message",
@@ -88,9 +87,11 @@ init_db()
 
 
 if __name__ == "__main__":
+    port = int(os.environ.get("PORT", 5000))
+
     socketio.run(
         app,
         host="0.0.0.0",
-        port=5000,
-        debug=True
+        port=port,
+        debug=False
     )
