@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <link rel="stylesheet" href="css/styles.css">
+    <title>ChatRoom 💬</title>
+</head>
+
+<body>
+
+<div class="chat">
+
+    <div class="header">
+        <h2>💬 ChatRoom</h2>
+        <span id="status">در حال اتصال...</span>
+        <p>xdcxccx</p>
+    </div>
+
+    <div id="messages"></div>
+
+    <div class="input-area">
+        <input
+            id="messageInput"
+            type="text"
+            placeholder="پیامتان را بنویسید..."
+            autocomplete="off"
+        >
+
+        <button id="sendButton">
+            ارسال
+        </button>
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+</body>
+</html>

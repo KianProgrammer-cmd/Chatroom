@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatRoom</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+    <div id="status">🔴 قطع است</div>
+
+    <div id="messages"></div>
+
+    <div>
+        <input
+            type="text"
+            id="messageInput"
+            placeholder="پیامت را بنویس..."
+        >
+
+        <button id="sendButton">
+            ارسال
+        </button>
+    </div>
+    
+
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script src="js/script.js"></script>
+
+</body>
+</html>
