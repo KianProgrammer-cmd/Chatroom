@@ -1,9 +1,10 @@
 from flask import Flask, send_from_directory, request
 from flask_socketio import SocketIO, emit, join_room
-from database import init_db, save_message, get_messages
+from backend.database import init_db, save_message, get_messages
 import os
 
 app = Flask(__name__)
+
 app.config["SECRET_KEY"] = os.environ.get(
     "SECRET_KEY",
     "chatroom-secret-key"
